@@ -34,7 +34,7 @@ class thread_pool {
   thread_pool(size_t thread_number);
   void stop();
   void push_task(task_type&& task);
-  void wait_task();
+  void wait_task_done();
   ~thread_pool();
 };
 

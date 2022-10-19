@@ -45,18 +45,18 @@ void thread_pool::per_thread_func() {
       }
     }
     task();
-    task_number--;
+    --task_number;
   }
 }
 
 void thread_pool::push_task(task_type&& task) {
   std::lock_guard<std::mutex> lg(task_queue_M_);
   task_queue.push_back(task);
-  task_number++;
+  ++task_number;
   task_queue_wait_.notify_one();
 }
 
-void thread_pool::wait_task() {
+void thread_pool::wait_task_done() {
   while (task_number != 0) {
   }
 }
